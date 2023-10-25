@@ -1,0 +1,31 @@
+.simple-button {
+  background-color: $black;
+  height: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid $highlight;
+  box-shadow: 0 2px 8px $shadow-color;
+  width: 150px;
+  color: $white;
+}
+
+.button-login {
+  font-family: 'Roboto', sans-serif;
+  background: rgba($color: #3d33335b, $alpha: 0.5);
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  color: $white;
+  font-weight: bold;
+  width: 150px;
+  height: 40px;
+  margin-left: 25px;
+  margin-top: 5px;
+  border: 1px solid $black;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+.button-login:hover {
+  background: $gray;
+}
