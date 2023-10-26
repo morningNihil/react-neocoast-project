@@ -15,11 +15,6 @@ export const loginUser = async (userData) => {
       return await response.json();
     } else {
       console.error('Server responded with status:', response.status);
-
-      const errorDetails = await response.json();
-      console.error('Response details:', errorDetails);
-
-      throw new Error(`Bad request: ${response.status}`);
     }
   } catch (error) {
     console.error('An error occurred:', error);

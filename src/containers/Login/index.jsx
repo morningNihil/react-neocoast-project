@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'Components/Button';
 
 const Login = () => {
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -16,34 +16,40 @@ const Login = () => {
 
   // should I fetch users and validate them here on the array?
   // or should I fetch users and validate them on the api?
-  useEffect(() => {
-    const fetchAllUsers = async () => {
-      try {
-        const response = await getAllUsers();
-        // console.log(response.data[0].email);
-        console.log(response.data[0]);
-        setUsers(response.data);
-      } catch (error) {
-        setError(error.message || 'Something went wrong');
-      }
-    };
-    fetchAllUsers();
-  }, []);
+
+  // useEffect(() => {
+  //   const fetchAllUsers = async () => {
+  //     try {
+  //       const response = await getAllUsers();
+  //       // console.log(response.data[0].email);
+  //       console.log(response.data[0]);
+  //       setUsers(response.data);
+  //     } catch (error) {
+  //       setError(error.message || 'Something went wrong');
+  //     }
+  //   };
+  //   fetchAllUsers();
+  // }, []);
 
   const handleLogin = async () => {
-    try {
-      const response = await loginUser({ username, password });
-      if (response.token) {
-        console.log('Login successful');
-        navigate('/');
+    if (username && password !== '') {
+      try {
+        const response = await loginUser({ username, password });
+        if (response.token) {
+          localStorage.setItem('username', username);
+          console.log('Login successful');
+          navigate('/');
+        }
+      } catch (error) {
+        setError('Username or password incorrect');
       }
-    } catch (error) {
-      setError('Nombre de usuario o contraseña incorrectos');
+    } else {
+      setError('You must enter a username and password');
     }
   };
 
   const handleInputChange = (inputSetter) => (e) => {
-    if (error) setError(null);
+    error ? setError(null) : null;
     inputSetter(e.target.value);
   };
 
@@ -79,8 +85,7 @@ const Login = () => {
             } toggle-password`}
             onClick={togglePasswordVisibility}></i>
         </div>
-        <p>{error && <p>{error}</p>}</p>
-
+        <div className="error-container">{<p>{error}</p>}</div>
         <Button
           onClick={handleLogin}
           name={'Login'}
