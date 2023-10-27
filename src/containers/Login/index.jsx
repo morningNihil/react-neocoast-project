@@ -1,5 +1,5 @@
 import './styles.scss';
-import getAllUsers from '../../api/users.js';
+// import getAllUsers from '../../api/users.js';
 import loginUser from '../../api/userLogin.js';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
