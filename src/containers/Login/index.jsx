@@ -1,42 +1,25 @@
 import './styles.scss';
-// import getAllUsers from '../../api/users.js';
+import { useAuth } from '../../contexts/AuthContext.js';
 import loginUser from '../../api/userLogin.js';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'Components/Button';
 
 const Login = () => {
-  // const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const { login } = useAuth();
 
   const navigate = useNavigate();
-
-  // should I fetch users and validate them here on the array?
-  // or should I fetch users and validate them on the api?
-
-  // useEffect(() => {
-  //   const fetchAllUsers = async () => {
-  //     try {
-  //       const response = await getAllUsers();
-  //       // console.log(response.data[0].email);
-  //       console.log(response.data[0]);
-  //       setUsers(response.data);
-  //     } catch (error) {
-  //       setError(error.message || 'Something went wrong');
-  //     }
-  //   };
-  //   fetchAllUsers();
-  // }, []);
 
   const handleLogin = async () => {
     if (username && password !== '') {
       try {
         const response = await loginUser({ username, password });
         if (response.token) {
-          localStorage.setItem('username', username);
+          login(username, response.token);
           console.log('Login successful');
           navigate('/');
         }
