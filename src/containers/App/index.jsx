@@ -13,7 +13,9 @@ import './index.scss';
 const App = () => (
   <BrowserRouter>
     <Routes>
-      <Route path={ROUTES.home} element={<Layout />}></Route>
+      <Route path={ROUTES.home} element={<Layout />}>
+        <Route index element={<Home />} />
+      </Route>
       <Route path={ROUTES.login} element={<Login />} />
     </Routes>
   </BrowserRouter>
