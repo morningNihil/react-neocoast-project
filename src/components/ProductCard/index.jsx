@@ -8,9 +8,9 @@ const ProductCard = ({ id, title, image, description, price }) => {
       <div className="product-card__info">
         <h2 className="product-card__title">{title}</h2>
         <p className="product-card__description">{description}</p>
-        <p className="product-card__price">${price}</p>{' '}
-        <button className="product-card__action">Add to Cart</button>
       </div>
+      <p className="product-card__price">${price}</p>{' '}
+      <button className="product-card__action">Add to Cart</button>
     </div>
   );
 };

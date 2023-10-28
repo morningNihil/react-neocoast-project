@@ -1,25 +1,52 @@
 import React, { useEffect, useState } from 'react';
 import ProductList from 'Components/Products';
 import getAllProducts from '../../api/products.js';
+import getAllCategories from '../../api/categories.js';
 
 import './index.scss';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  const getProducts = async () => {
-    const products = await getAllProducts();
-
-    setProducts(products.data);
-    console.log(products.data);
-  };
+  const [filter, setFilter] = useState('');
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    getProducts();
+    const fetchData = async () => {
+      try {
+        const productsData = await getAllProducts();
+        const categoriesData = await getAllCategories();
+
+        setProducts(productsData.data);
+        setCategories(categoriesData.data);
+      } catch (error) {
+        console.error(
+          'An error occurred while fetching data:',
+          error,
+        );
+      }
+    };
+
+    fetchData();
   }, []);
+
+  const filteredProducts = filter
+    ? products.filter((product) => product.category === filter)
+    : products;
 
   return (
     <div className="home">
-      <ProductList products={products} />
+      <h1>Product List</h1>
+      <select
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}>
+        <option value="">All</option>
+        {categories.map((category) => (
+          <option value={category}>{category}</option>
+        ))}
+      </select>
+      <div>
+        <ProductList products={filteredProducts} />
+      </div>
     </div>
   );
 };
