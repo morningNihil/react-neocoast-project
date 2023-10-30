@@ -24,7 +24,7 @@
   }
 
   &__description {
-    color: #666;
+    color: #827c7cb5;
     flex-grow: 1;
   }
 
@@ -43,7 +43,10 @@
     cursor: pointer;
 
     &:hover {
-      background-color: darkblue;
+      background-color: #274046;
     }
+  }
+  &:hover {
+    box-shadow: 0 4px 8px $shadow-color;
   }
 }

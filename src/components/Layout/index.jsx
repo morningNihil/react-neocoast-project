@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import TopBar from 'Components/TopBar';
+import { ROUTES } from 'Data/constants';
 
 import './styles.scss';
 
@@ -9,8 +10,11 @@ const Layout = () => {
     <div className="layout">
       <TopBar
         routes={[
-          { label: 'Home', route: '/' },
-          { label: 'Login', route: '/login' },
+          { label: 'Home', route: ROUTES.home },
+          { label: 'Login', route: ROUTES.login },
+          { label: 'Profile', route: ROUTES.profile },
+          { label: 'Cart', route: ROUTES.cart },
+          { label: 'Gift', route: ROUTES.gift },
         ]}
       />
       <div>

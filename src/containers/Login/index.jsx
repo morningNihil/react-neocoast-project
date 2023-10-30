@@ -4,6 +4,7 @@ import loginUser from '../../api/userLogin.js';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'Components/Button';
+import { ROUTES } from 'Data/constants';
 
 const Login = () => {
   const [error, setError] = useState(null);
@@ -21,7 +22,7 @@ const Login = () => {
         if (response.token) {
           login(username, response.token);
           console.log('Login successful');
-          navigate('/');
+          navigate(ROUTES.home);
         }
       } catch (error) {
         setError('Username or password incorrect');

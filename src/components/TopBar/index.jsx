@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext.js';
 import { useNavigate } from 'react-router-dom';
+import { ROUTES } from 'Data/constants';
 
 import './styles.scss';
 
@@ -12,7 +13,7 @@ const TopBar = ({ logo, routes }) => {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate(ROUTES.login);
   };
 
   return (
@@ -30,17 +31,26 @@ const TopBar = ({ logo, routes }) => {
             if (label === 'Login' && isLoggedIn) {
               return null;
             }
+            if (
+              (label === 'Profile' ||
+                label === 'Cart' ||
+                label === 'Gift') &&
+              !isLoggedIn
+            ) {
+              return null;
+            }
             return (
               <li key={label}>
                 <NavLink to={route}>{label}</NavLink>
               </li>
             );
           })}
+
           {isLoggedIn && (
             <li
               key="logout"
               onClick={handleLogout}
-              className="nav-item-logout">
+              className="top-bar__nav__logout">
               Logout
             </li>
           )}

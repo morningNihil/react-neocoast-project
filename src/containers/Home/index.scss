@@ -5,6 +5,7 @@
   padding: 16px;
   max-width: 1200px;
   margin: 0 auto;
+
   & select {
     max-width: 200px;
     padding: 10px;
@@ -16,6 +17,12 @@
     outline: none;
     width: 250px;
     cursor: pointer;
+
+    & option {
+      font-size: 15px;
+      color: #160d0d;
+      cursor: pointer;
+    }
   }
 }
 .product-list {
