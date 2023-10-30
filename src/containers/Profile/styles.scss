@@ -1,0 +1,48 @@
+.content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 200px);
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  border-radius: 8px;
+  width: 30%;
+
+  text-align: center;
+
+  &__avatar {
+    width: 200px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__name {
+    font-size: 1.5em;
+    margin-top: 10px;
+  }
+
+  &__username {
+    color: #888;
+  }
+
+  &__bio {
+    margin-top: 10px;
+    color: #555;
+  }
+
+  &__details {
+    margin-top: 10px;
+    color: #666;
+
+    p {
+      margin: 5px 0;
+    }
+  }
+}
