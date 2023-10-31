@@ -9,9 +9,18 @@
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(to right, #274046, #e6dada);
+  // background: linear-gradient(to right, #274046, #e6dada);
+  background-color: #e5e5f7;
+  opacity: 0.8;
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      #e5e5f7 40px
+    ),
+    repeating-linear-gradient(#d2d0ca55, #d2d0ca);
   font-weight: bold;
   align-items: center;
+  font-weight: bold;
 
   &__input-section {
     background-color: rgba($color: #fafafa, $alpha: 0.5);

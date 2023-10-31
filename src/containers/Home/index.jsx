@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ProductList from 'Components/Products';
-import getAllProducts from '../../api/products.js';
+import {
+  getAllProducts,
+  getProductById,
+} from '../../api/products.js';
 import getAllCategories from '../../api/categories.js';
 
 import './index.scss';
@@ -41,7 +44,9 @@ const Home = () => {
         onChange={(e) => setFilter(e.target.value)}>
         <option value="">All</option>
         {categories.map((category) => (
-          <option value={category}>{category}</option>
+          <option key={category} value={category}>
+            {category}
+          </option>
         ))}
       </select>
       <div>

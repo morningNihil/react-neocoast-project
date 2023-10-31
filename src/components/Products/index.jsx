@@ -12,6 +12,9 @@ const ProductList = ({ products }) => {
           image={product.image}
           description={product.description}
           price={product.price}
+          rating={product.rating || {}}
+          category={product.category}
+          showProductDetails={false}
         />
       ))}
     </div>

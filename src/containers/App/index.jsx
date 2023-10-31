@@ -8,6 +8,7 @@ import Home from 'Containers/Home';
 import Login from 'Containers/Login';
 import Profile from 'Containers/Profile';
 import Layout from 'Components/Layout';
+import ProductView from 'Containers/ProductView';
 
 import './index.scss';
 
@@ -18,6 +19,7 @@ const App = () => (
         <Route path={ROUTES.home} element={<Layout />}>
           <Route path={ROUTES.home} element={<Home />} />
           <Route path={ROUTES.profile} element={<Profile />} />
+          <Route path={ROUTES.product} element={<ProductView />} />
         </Route>
         <Route path={ROUTES.login} element={<Login />} />
       </Routes>

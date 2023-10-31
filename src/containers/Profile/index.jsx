@@ -27,7 +27,6 @@ const Profile = () => {
 
   useEffect(() => {
     // repeat this for cart, gift
-
     if (!isLoggedIn) {
       navigate('/');
     }
