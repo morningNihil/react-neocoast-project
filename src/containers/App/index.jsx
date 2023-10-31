@@ -9,17 +9,20 @@ import Login from 'Containers/Login';
 import Profile from 'Containers/Profile';
 import Layout from 'Components/Layout';
 import ProductView from 'Containers/ProductView';
+import CartView from 'Containers/CartView';
 
-import './index.scss';
+import './styles.scss';
 
 const App = () => (
   <AuthProvider>
     <BrowserRouter>
       <Routes>
-        <Route path={ROUTES.home} element={<Layout />}>
-          <Route path={ROUTES.home} element={<Home />} />
+        <Route path={'/'} element={<Layout />}>
+          <Route index element={<Home />} />
           <Route path={ROUTES.profile} element={<Profile />} />
           <Route path={ROUTES.product} element={<ProductView />} />
+          <Route path={ROUTES.cart} element={<CartView />} />
+          <Route path="*" element={<Home />} />
         </Route>
         <Route path={ROUTES.login} element={<Login />} />
       </Routes>

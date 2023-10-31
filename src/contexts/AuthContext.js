@@ -6,6 +6,8 @@ import React, {
   useMemo,
 } from 'react';
 
+import getAllUsers from '../api/users';
+
 const AuthContext = createContext();
 
 export const useAuth = () => {
@@ -18,14 +20,38 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const username = localStorage.getItem('username');
     if (username) {
-      setCurrentUser({ username });
+      const fetchData = async () => {
+        try {
+          const usersData = await getAllUsers();
+
+          const user = usersData.data.find(
+            (user) => user.username === username,
+          );
+          setCurrentUser(user);
+        } catch (error) {
+          console.error(
+            'An error occurred while fetching data:',
+            error,
+          );
+        }
+      };
+
+      fetchData();
     }
   }, []);
 
-  const login = (username, token) => {
-    setCurrentUser({ username });
-    localStorage.setItem('username', username);
-    localStorage.setItem('token', token);
+  const login = async (username, token) => {
+    try {
+      const usersData = await getAllUsers();
+      const user = usersData.data.find(
+        (user) => user.username === username,
+      );
+      setCurrentUser(user);
+      localStorage.setItem('username', username);
+      localStorage.setItem('token', token);
+    } catch (error) {
+      console.error('An error occurred while logging in:', error);
+    }
   };
 
   const logout = () => {
