@@ -1,49 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import { getAllCarts } from '../../api/carts.js';
+import { getAllCarts, getCartById } from '../../api/carts.js';
 import { getProductById } from '../../api/products.js';
 import { useAuth } from '../../contexts/AuthContext.js';
 import './styles.scss';
 import CartCard from 'Components/Cart';
 import Button from 'Components/Button';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-const CartView = () => {
+const CartView = ({}) => {
   const [carts, setCarts] = useState([]);
   const [productsData, setProductsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const { cartId } = useParams();
 
   const { currentUser } = useAuth();
-
-  console.log('Current user:', currentUser);
 
   useEffect(() => {
     const fetchData = async () => {
       if (!currentUser) return;
       try {
-        const cartData = await getAllCarts();
+        let cartToProcess;
 
-        const sortedCarts = cartData.data
-          .filter((cart) => cart.userId === currentUser.id)
-          .sort((a, b) => new Date(b.date) - new Date(a.date)); // sort the carts to only show the recent one in the case of johnd
-
-        const mostRecentCart = sortedCarts[0];
-        if (!mostRecentCart || !mostRecentCart.products) return;
-
-        setCarts(mostRecentCart);
-
-        if (mostRecentCart) {
-          const fetchedProductsData = [];
-          for (let item of mostRecentCart.products) {
-            const productData = await getProductById(item.productId);
-            fetchedProductsData.push({
-              ...productData.data,
-              quantity: item.quantity,
-            });
-          }
-          setProductsData(fetchedProductsData);
-          setIsLoading(false);
+        // If selectedCartId is provided, fetch that cart
+        if (cartId) {
+          const cartData = await getCartById(cartId);
+          cartToProcess = cartData.data;
+        } else {
+          // Otherwise, fetch the most recent cart for the user
+          const allCartsData = await getAllCarts();
+          const sortedCarts = allCartsData.data
+            .filter((cart) => cart.userId === currentUser.id)
+            .sort((a, b) => new Date(b.date) - new Date(a.date));
+          cartToProcess = sortedCarts[0];
         }
+
+        if (!cartToProcess || !cartToProcess.products) return;
+        setCarts(cartToProcess);
+
+        const fetchedProductsData = [];
+        for (let item of cartToProcess.products) {
+          const productData = await getProductById(item.productId);
+          fetchedProductsData.push({
+            ...productData.data,
+            quantity: item.quantity,
+          });
+        }
+        setProductsData(fetchedProductsData);
+        setIsLoading(false);
       } catch (error) {
         console.error(
           'An error occurred while fetching data:',
@@ -53,17 +58,15 @@ const CartView = () => {
     };
 
     fetchData();
-  }, [currentUser]);
+  }, [currentUser, cartId]);
 
   const handleBuy = () => {
     navigate('/');
   };
 
   if (isLoading) {
-    return <p>Loading...</p>; // again I need to add an spinner here
+    return <p>Loading...</p>;
   }
-
- 
 
   return (
     <div className="cart-view">

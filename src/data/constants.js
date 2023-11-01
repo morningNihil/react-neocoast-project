@@ -5,6 +5,7 @@ export const ROUTES = {
   login: '/login',
   profile: '/profile',
   cart: '/cart',
+  cartGift: 'cart/:cartId',
   gift: '/gift',
   product: 'product/:id',
 };

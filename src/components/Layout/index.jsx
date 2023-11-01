@@ -12,8 +12,8 @@ const Layout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isLoggedIn = !!currentUser;
-  console.log('Is logged in:', isLoggedIn);
-  console.log('Current Path:', location.pathname);
+  // console.log('Is logged in:', isLoggedIn);
+  // console.log('Current Path:', location.pathname);
   // console.log('Current User:', currentUser);
 
   useEffect(() => {

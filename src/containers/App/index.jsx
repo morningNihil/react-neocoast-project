@@ -10,6 +10,7 @@ import Profile from 'Containers/Profile';
 import Layout from 'Components/Layout';
 import ProductView from 'Containers/ProductView';
 import CartView from 'Containers/CartView';
+import GiftView from 'Containers/GiftView';
 
 import './styles.scss';
 
@@ -21,6 +22,8 @@ const App = () => (
           <Route index element={<Home />} />
           <Route path={ROUTES.profile} element={<Profile />} />
           <Route path={ROUTES.product} element={<ProductView />} />
+          <Route path={ROUTES.gift} element={<GiftView />} />
+          <Route path={ROUTES.cartGift} element={<CartView />} />
           <Route path={ROUTES.cart} element={<CartView />} />
           <Route path="*" element={<Home />} />
         </Route>
