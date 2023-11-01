@@ -28,9 +28,6 @@ const TopBar = ({ logo, routes }) => {
       <nav className="top-bar__nav">
         <ul>
           {routes.map(({ label, route }) => {
-            if (label === 'Login' && isLoggedIn) {
-              return null;
-            }
             if (
               (label === 'Profile' ||
                 label === 'Cart' ||
@@ -39,6 +36,10 @@ const TopBar = ({ logo, routes }) => {
             ) {
               return null;
             }
+            if (label === 'Login' && isLoggedIn) {
+              return null;
+            }
+
             return (
               <li key={label}>
                 <NavLink to={route}>{label}</NavLink>

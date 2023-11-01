@@ -5,14 +5,14 @@ import {
   getProductById,
 } from '../../api/products.js';
 import getAllCategories from '../../api/categories.js';
-
+import Spinner from 'Components/Spinner';
 import './index.scss';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState('');
   const [categories, setCategories] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -21,6 +21,7 @@ const Home = () => {
 
         setProducts(productsData.data);
         setCategories(categoriesData.data);
+        setIsLoading(false);
       } catch (error) {
         console.error(
           'An error occurred while fetching data:',
@@ -35,6 +36,10 @@ const Home = () => {
   const filteredProducts = filter
     ? products.filter((product) => product.category === filter)
     : products;
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="home">

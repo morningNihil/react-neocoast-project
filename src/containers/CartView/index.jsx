@@ -7,6 +7,7 @@ import CartCard from 'Components/Cart';
 import Button from 'Components/Button';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import Spinner from 'Components/Spinner';
 
 const CartView = ({}) => {
   const [carts, setCarts] = useState([]);
@@ -65,7 +66,7 @@ const CartView = ({}) => {
   };
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   return (
