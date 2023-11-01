@@ -5,6 +5,8 @@ import { ROUTES } from 'Data/constants';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext.js';
 
+// import logo from 'assets/logo2.png';
+
 import './styles.scss';
 
 const Layout = () => {
@@ -31,10 +33,11 @@ const Layout = () => {
   return (
     <div className="layout">
       <TopBar
+        // logo={logo}
         routes={[
           { label: 'Home', route: ROUTES.home },
           { label: 'Login', route: ROUTES.login },
-          { label: 'Profile', route: ROUTES.profile },
+
           { label: 'Cart', route: ROUTES.cart },
           { label: 'Gift', route: ROUTES.gift },
         ]}

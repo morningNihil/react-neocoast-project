@@ -29,7 +29,7 @@ const Profile = () => {
         <p className="user-profile__bio">{currentUser.bio}</p>
         <div className="user-profile__details">
           <p>Email: {currentUser.email}</p>
-          <p>Location </p>
+          <p className="user-profile__details__location">Location </p>
           <p>City: {currentUser.address.city}</p>
           <p>Street: {currentUser.address.street}</p>
           <p>Number: {currentUser.address.number}</p>

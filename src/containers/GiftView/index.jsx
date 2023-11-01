@@ -50,15 +50,21 @@ const GiftView = () => {
           );
           return (
             <li key={cart.id}>
+              <span className="gift-view__name-icon">
+                <i className="fa-regular fa-address-card gift-view__icon"></i>
+                <span className="gift-view__name">
+                  {`${capitalizeFirstLetter(
+                    cartUser.name.firstname,
+                  )} ${capitalizeFirstLetter(
+                    cartUser.name.lastname,
+                  )}`}
+                </span>
+              </span>
+              <span className="gift-view__product-count">
+                🛒 Total Products: {cart.products.length}
+              </span>
               <Link to={`/cart/${cart.id}`}>
-                Name:{' '}
-                {`${capitalizeFirstLetter(
-                  cartUser.name.firstname,
-                )} ${capitalizeFirstLetter(
-                  cartUser.name.lastname,
-                )}`}{' '}
-                | Total Products: {cart.products.length}
-                <button className="gift-button">Gift</button>
+                <button className="gift-view__button">Gift</button>
               </Link>
             </li>
           );

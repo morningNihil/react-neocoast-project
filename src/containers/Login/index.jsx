@@ -44,32 +44,37 @@ const Login = () => {
   return (
     <div className="login">
       <div className="login__input-section">
-        <div className="input-wrapper">
-          <i className="fa-regular fa-user"></i>
+        <div className="login__input-wrapper">
+          <i className="fa-regular fa-user login__icon"></i>
           <input
             type="text"
             value={username}
             placeholder="Username"
             onChange={handleInputChange(setUsername)}
+            className="login__input-wrapper__input"
           />
         </div>
-        <div className="input-wrapper">
-          <i className="fas fa-lock icon"></i>
-
+        <div className="login__input-wrapper">
+          <i className="fas fa-lock login__icon"></i>
           <input
             type={showPassword ? 'text' : 'password'}
             value={password}
             placeholder="Password"
             onChange={handleInputChange(setPassword)}
-            className="password-input"
+            className="login__input-wrapper__input"
           />
-          <i
-            className={`fas ${
-              showPassword ? 'fa-eye-slash' : 'fa-eye'
-            } toggle-password`}
-            onClick={togglePasswordVisibility}></i>
         </div>
-        <div className="error-container">{<p>{error}</p>}</div>
+        <i
+          className={`fas ${
+            showPassword ? 'fa-eye-slash' : 'fa-eye'
+          } login__input-wrapper__toggle-password`}
+          onClick={togglePasswordVisibility}></i>
+
+        <div className="login__error-container">
+          {error && (
+            <p className="login__error-container__message">{error}</p>
+          )}
+        </div>
         <Button
           onClick={handleLogin}
           name={'Login'}

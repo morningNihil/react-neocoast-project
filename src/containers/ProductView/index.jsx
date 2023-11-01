@@ -6,6 +6,7 @@ import {
 import React, { useState, useEffect } from 'react';
 import ProductCard from 'Components/ProductCard';
 
+
 import { useParams } from 'react-router-dom';
 
 const ProductView = () => {

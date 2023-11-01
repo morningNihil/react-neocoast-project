@@ -1,88 +1,72 @@
 .top-bar {
-  // background: linear-gradient(to right, #274046, #e6dada);
-  background: rgba(210, 208, 202, 0.2);
-  color: $white;
   display: flex;
-  justify-content: space-between;
+  justify-content: last baseline;
   align-items: center;
-  gap: 10%;
-  padding: 20px 30px;
-  box-shadow: 0 4px 8px $shadow-color;
-  height: 80px;
-
-  &__logo {
-    img {
-      max-height: 70px;
-    }
-  }
-
-  &__nav {
-    &__logout {
-      text-decoration: none;
-      font-size: 18px;
-      color: #e74c3c;
-      transition: all 0.2s;
-      display: inline-block;
-      width: auto;
-      height: auto;
-      cursor: pointer;
-
-      &:hover {
-        transform: scale(1.1);
-        color: $red;
-      }
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      gap: 30px;
-
-      li {
-        margin-right: 10px;
-
-        a {
-          text-decoration: none;
-          font-size: 18px;
-          color: $black;
-          transition: all 0.2s;
-          display: inline-block;
-          width: auto;
-          height: auto;
-
-          &:hover {
-            transform: scale(1.1);
-            color: $white;
-          }
-        }
-      }
-    }
-  }
+  padding: 10px 20px;
+  background: $theme;
+  height: 60px;
+  font-size: 18px;
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
+.top-bar__logo img {
+  max-height: 40px;
 }
 
-.dropdown-menu {
-  display: block;
-  position: absolute;
-  right: 0;
-  background-color: #f9f9f9;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+.top-bar__nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 10px;
 }
 
-.dropdown-menu button {
-  padding: 8px 12px;
-  border: none;
+.top-bar__nav li {
+  padding: 5px 10px;
   cursor: pointer;
-  width: 100%;
-  text-align: left;
 }
 
-.dropdown-menu button:hover {
-  background-color: #ddd;
+.top-bar__nav a {
+  text-decoration: none;
+  color: #110e0e;
+  transition: color 0.3s;
+}
+
+.top-bar__nav a:hover {
+  color: #441f1f3d;
+}
+
+.user-dropdown {
+  position: relative;
+  height: 100%;
+}
+
+.user-dropdown:hover {
+  color: #441f1f3d;
+}
+
+.user-name:hover {
+  color: #441f1f3d;
+}
+.user-dropdown__menu {
+  position: absolute;
+  top: 180%;
+  right: 0%;
+  left: 0%;
+  width: 100px;
+  background: repeating-linear-gradient(#d2d0ca55, #d2d0ca);
+  border: 1px solid repeating-linear-gradient(#d2d0ca55, #d2d0ca);
+  border-radius: 5%;
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.user-dropdown__menu li {
+  padding: 10px 20px;
+}
+
+.user-dropdown__menu li:hover {
+  background-color: #555;
 }

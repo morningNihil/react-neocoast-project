@@ -1,15 +1,9 @@
-// import fonts here or on public/index.html
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-// ask about BEM
 .login {
   font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  // background: linear-gradient(to right, #274046, #e6dada);
   background-color: #e5e5f7;
   opacity: 0.8;
   background-image: repeating-radial-gradient(
@@ -20,7 +14,6 @@
     repeating-linear-gradient(#d2d0ca55, #d2d0ca);
   font-weight: bold;
   align-items: center;
-  font-weight: bold;
 
   &__input-section {
     background-color: rgba($color: #fafafa, $alpha: 0.5);
@@ -33,42 +26,41 @@
     width: 300px;
     box-shadow: 0 2px 10px $shadow-color;
   }
-}
 
-.error-container {
-  height: 30px;
-}
-.error-container p {
-  color: $red;
-  margin-left: 14px;
+  &__error-container {
+    height: 30px;
 
-  font-size: 12px;
-  line-height: 2px;
-}
+    &__message {
+      color: $red;
+      margin-left: 14px;
+      font-size: 12px;
+      line-height: 2px;
+    }
+  }
 
-.input-wrapper {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-}
+  &__input-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 15px;
 
-.input-wrapper input {
-  background-color: rgba($color: #fafafa, $alpha: 0.5);
-  padding: 10px;
-  margin-left: 10px;
-  border: 1px solid $highlight;
-}
+    &__input {
+      background-color: rgba($color: #fafafa, $alpha: 0.5);
+      padding: 10px;
+      margin-left: 10px;
+      border: 1px solid $highlight;
 
-.input-wrapper input:focus {
-  outline: none;
-  box-shadow: 0 0 5px $black;
-}
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 5px $black;
+      }
+    }
 
-.input-wrapper .icon {
-  margin-left: 30px;
-}
-
-.input-wrapper .toggle-password {
-  margin-left: 10px;
-  cursor: pointer;
+    &__toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 590px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  }
 }

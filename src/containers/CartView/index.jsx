@@ -78,10 +78,10 @@ const CartView = ({}) => {
           quantity={product}
         />
       ))}
-      <div className="button-container">
+      <div className="cart-view__button-container">
         <Button
           name={'Buy'}
-          className="button-cart"
+          className="cart-view__button-cart"
           onClick={handleBuy}
         />
       </div>

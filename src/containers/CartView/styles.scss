@@ -8,27 +8,27 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   text-align: center;
-}
 
-.button-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.button-cart {
-  padding: 10px 15px;
-  margin: 20px;
+  &__button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  &__button-cart {
+    padding: 10px 15px;
+    margin: 20px;
 
-  background-color: #333;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
+    background-color: #333;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
 
-.button-cart:hover {
-  background-color: #555;
+  &__button-cart:hover {
+    background-color: #555;
+  }
 }

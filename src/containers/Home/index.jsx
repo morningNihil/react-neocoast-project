@@ -7,6 +7,7 @@ import {
 import getAllCategories from '../../api/categories.js';
 import Spinner from 'Components/Spinner';
 import './index.scss';
+import capitalizeFirstLetter from '/home/facu/react-neocoast-project/build-utils/capitalizeFirstLetter.js';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -43,14 +44,13 @@ const Home = () => {
 
   return (
     <div className="home">
-      <h1>Product List</h1>
       <select
         value={filter}
         onChange={(e) => setFilter(e.target.value)}>
         <option value="">All</option>
         {categories.map((category) => (
           <option key={category} value={category}>
-            {category}
+            {capitalizeFirstLetter(category)}
           </option>
         ))}
       </select>
