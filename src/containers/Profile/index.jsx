@@ -3,14 +3,18 @@ import React from 'react';
 import { useAuth } from '../../contexts/AuthContext.js';
 import getGravatar from '/home/facu/react-neocoast-project/build-utils/gravatar.js';
 import capitalizeFirstLetter from '/home/facu/react-neocoast-project/build-utils/capitalizeFirstLetter.js';
+import Spinner from 'Components/Spinner';
 
 import './styles.scss';
 
 const Profile = () => {
   const { currentUser } = useAuth();
+  const profileIcon = currentUser
+    ? getGravatar(currentUser.email)
+    : '';
 
-  if (!currentUser) {
-    return null; // we can add a loading spinner here
+  if (!currentUser && profileIcon === '') {
+    return <Spinner />;
   }
 
   return (
@@ -18,7 +22,7 @@ const Profile = () => {
       <div className="user-profile">
         <img
           className="user-profile__avatar"
-          src={getGravatar(currentUser.email) || ''}
+          src={profileIcon || ''}
           alt={`${currentUser.name.firstname}'s profile`}
         />
         <h2 className="user-profile__name">

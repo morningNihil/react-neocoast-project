@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 
+import Spinner from 'Components/Spinner';
+
 import {
   getAllProducts,
   getProductById,
@@ -13,6 +15,7 @@ import './styles.scss';
 const ProductView = () => {
   const { id } = useParams();
   const [productToDisplay, setProduct] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,6 +23,7 @@ const ProductView = () => {
         const productData = await getProductById(id);
 
         setProduct(productData.data);
+        setIsLoading(false);
       } catch (error) {
         console.error(
           'An error occurred while fetching data:',
@@ -30,6 +34,10 @@ const ProductView = () => {
 
     fetchData();
   }, []);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   const { title, image, description, price, rating, category } =
     productToDisplay || {};

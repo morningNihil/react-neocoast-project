@@ -1,6 +1,6 @@
 .top-bar {
   display: flex;
-  justify-content: last baseline;
+  justify-content: space-between; /* This line pushes items to the extremes */
   align-items: center;
   padding: 10px 20px;
   background: $theme;
@@ -9,7 +9,8 @@
 }
 
 .top-bar__logo img {
-  max-height: 40px;
+  max-height: 90px;
+  cursor: pointer;
 }
 
 .top-bar__nav ul {
@@ -51,7 +52,7 @@
   position: absolute;
   top: 180%;
   right: 0%;
-  left: 0%;
+
   width: 100px;
   background: repeating-linear-gradient(#d2d0ca55, #d2d0ca);
   border: 1px solid repeating-linear-gradient(#d2d0ca55, #d2d0ca);

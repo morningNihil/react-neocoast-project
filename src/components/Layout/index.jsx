@@ -6,7 +6,7 @@ import { ROUTES } from 'Data/constants';
 import TopBar from 'Components/TopBar';
 import { useAuth } from '../../contexts/AuthContext.js';
 
-// import logo from 'assets/logo2.png';
+import logo from '/home/facu/react-neocoast-project/src/assets/logo2.png';
 
 import './styles.scss';
 
@@ -31,9 +31,8 @@ const Layout = () => {
   return (
     <div className="layout">
       <TopBar
-        // logo={logo}
+        logo={logo}
         routes={[
-          { label: 'Home', route: ROUTES.home },
           { label: 'Login', route: ROUTES.login },
           { label: 'Cart', route: ROUTES.cart },
           { label: 'Gift', route: ROUTES.gift },

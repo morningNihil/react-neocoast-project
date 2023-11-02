@@ -41,7 +41,9 @@
   &__input-wrapper {
     display: flex;
     align-items: center;
+    justify-content: space-around;
     padding: 15px;
+    gap: 5px;
 
     &__input {
       background-color: rgba($color: #fafafa, $alpha: 0.5);
@@ -56,11 +58,12 @@
     }
 
     &__toggle-password {
-      position: absolute;
-      top: 50%;
-      right: 590px;
-      transform: translateY(-50%);
       cursor: pointer;
     }
   }
+}
+
+// last resource in order to align the login screen icons/inputs
+.login_icon_hidden {
+  visibility: hidden;
 }

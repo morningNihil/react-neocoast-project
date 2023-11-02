@@ -57,6 +57,9 @@ const Login = () => {
             onChange={handleInputChange(setUsername)}
             className="login__input-wrapper__input"
           />
+          <div>
+            <i className="fas fa-lock login__icon login_icon_hidden"></i>
+          </div>
         </div>
         <div className="login__input-wrapper">
           <i className="fas fa-lock login__icon"></i>
@@ -67,12 +70,14 @@ const Login = () => {
             onChange={handleInputChange(setPassword)}
             className="login__input-wrapper__input"
           />
+          <div>
+            <i
+              className={`fas ${
+                showPassword ? 'fa-eye-slash' : 'fa-eye'
+              } login__input-wrapper__toggle-password`}
+              onClick={togglePasswordVisibility}></i>
+          </div>
         </div>
-        <i
-          className={`fas ${
-            showPassword ? 'fa-eye-slash' : 'fa-eye'
-          } login__input-wrapper__toggle-password`}
-          onClick={togglePasswordVisibility}></i>
 
         <div className="login__error-container">
           {error && (

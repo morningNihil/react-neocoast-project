@@ -28,7 +28,7 @@ const TopBar = ({ logo, routes }) => {
     <header className="top-bar">
       <div className="top-bar__logo">
         {typeof logo === 'string' ? (
-          <img src={logo} alt="Logo" />
+          <img src={logo} alt="Logo" onClick={() => navigate('/')} />
         ) : (
           logo
         )}
