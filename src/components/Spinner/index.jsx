@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { BeatLoader } from 'react-spinners';
+
 import './styles.scss';
 
 const Spinner = () => {

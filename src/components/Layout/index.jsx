@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
-import TopBar from 'Components/TopBar';
+
+import { useNavigate, useLocation, Outlet } from 'react-router-dom';
+
 import { ROUTES } from 'Data/constants';
-import { useNavigate, useLocation } from 'react-router-dom';
+import TopBar from 'Components/TopBar';
 import { useAuth } from '../../contexts/AuthContext.js';
 
 // import logo from 'assets/logo2.png';
@@ -14,9 +15,6 @@ const Layout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isLoggedIn = !!currentUser;
-  // console.log('Is logged in:', isLoggedIn);
-  // console.log('Current Path:', location.pathname);
-  // console.log('Current User:', currentUser);
 
   useEffect(() => {
     // add a timeout or change with spinner + timeout so it doesn't redirect inmediately to home since right now is redirecting before it can check the auth state
@@ -37,7 +35,6 @@ const Layout = () => {
         routes={[
           { label: 'Home', route: ROUTES.home },
           { label: 'Login', route: ROUTES.login },
-
           { label: 'Cart', route: ROUTES.cart },
           { label: 'Gift', route: ROUTES.gift },
         ]}

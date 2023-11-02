@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext.js';
-import { useNavigate } from 'react-router-dom';
+
+import { NavLink, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import { ROUTES } from 'Data/constants';
+import { useAuth } from '../../contexts/AuthContext.js';
 import capitalizeFirstLetter from '/home/facu/react-neocoast-project/build-utils/capitalizeFirstLetter.js';
 
 import './styles.scss';
@@ -55,7 +57,7 @@ const TopBar = ({ logo, routes }) => {
 
           {isLoggedIn && (
             <li className="user-dropdown" onClick={toggleDropdown}>
-              <span className='user-name'>
+              <span className="user-name">
                 {capitalizeFirstLetter(currentUser.name.firstname)}
               </span>
 
@@ -73,6 +75,11 @@ const TopBar = ({ logo, routes }) => {
       </nav>
     </header>
   );
+};
+
+TopBar.propTypes = {
+  logo: PropTypes.string,
+  routes: PropTypes.array.isRequired,
 };
 
 export default TopBar;

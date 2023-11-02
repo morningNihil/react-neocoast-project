@@ -1,10 +1,14 @@
-import './styles.scss';
+import React, { useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
 import { useAuth } from '../../contexts/AuthContext.js';
 import loginUser from '../../api/userLogin.js';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Button from 'Components/Button';
 import { ROUTES } from 'Data/constants';
+
+import Button from 'Components/Button';
+
+import './styles.scss';
 
 const Login = () => {
   const [error, setError] = useState(null);

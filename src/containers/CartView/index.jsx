@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { getAllCarts, getCartById } from '../../api/carts.js';
 import { getProductById } from '../../api/products.js';
 import { useAuth } from '../../contexts/AuthContext.js';
-import './styles.scss';
 import CartCard from 'Components/Cart';
 import Button from 'Components/Button';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 import Spinner from 'Components/Spinner';
+
+import './styles.scss';
 
 const CartView = ({}) => {
   const [carts, setCarts] = useState([]);

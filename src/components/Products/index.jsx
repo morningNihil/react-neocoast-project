@@ -1,5 +1,10 @@
 import React from 'react';
+
+import PropTypes from 'prop-types';
+
 import ProductCard from 'Components/ProductCard';
+
+import './styles.scss';
 
 const ProductList = ({ products }) => {
   return (
@@ -19,6 +24,10 @@ const ProductList = ({ products }) => {
       ))}
     </div>
   );
+};
+
+ProductList.propTypes = {
+  products: PropTypes.array.isRequired,
 };
 
 export default ProductList;

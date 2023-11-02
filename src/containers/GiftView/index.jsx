@@ -1,11 +1,14 @@
-import './styles.scss';
 import React, { useState, useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
+
+import { useAuth } from '../../contexts/AuthContext.js';
 import { getAllCarts } from '../../api/carts.js';
 import getAllUsers from '../../api/users.js';
-import { useAuth } from '../../contexts/AuthContext.js';
-import Spinner from 'Components/Spinner';
 import capitalizeFirstLetter from '/home/facu/react-neocoast-project/build-utils/capitalizeFirstLetter.js';
+import Spinner from 'Components/Spinner';
+
+import './styles.scss';
 
 const GiftView = () => {
   const [carts, setCarts] = useState([]);

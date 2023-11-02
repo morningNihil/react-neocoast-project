@@ -1,7 +1,9 @@
 import React from 'react';
-import './styles.scss';
-import { Link } from 'react-router-dom';
 
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import './styles.scss';
 
 const ProductCard = ({
   id,
@@ -35,6 +37,17 @@ const ProductCard = ({
       <button className="product-card__action">Add to Cart</button>
     </Link>
   );
+};
+
+ProductCard.propTypes = {
+  showProductDetails: PropTypes.bool,
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string,
+  image: PropTypes.string,
+  description: PropTypes.string,
+  price: PropTypes.number,
+  rating: PropTypes.object,
+  category: PropTypes.string,
 };
 
 export default ProductCard;

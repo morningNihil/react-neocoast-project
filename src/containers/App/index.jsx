@@ -1,9 +1,9 @@
 import React from 'react';
+
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-import { AuthProvider } from '../../contexts/AuthContext.js';
 
 import { ROUTES } from 'Data/constants';
-
+import { AuthProvider } from '../../contexts/AuthContext.js';
 import Home from 'Containers/Home';
 import Login from 'Containers/Login';
 import Profile from 'Containers/Profile';

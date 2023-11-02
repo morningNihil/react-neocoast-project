@@ -1,4 +1,7 @@
 import React from 'react';
+
+import PropTypes from 'prop-types';
+
 import './styles.scss';
 
 const CartCard = ({ product }) => {
@@ -14,6 +17,10 @@ const CartCard = ({ product }) => {
       />
     </div>
   );
+};
+
+CartCard.propTypes = {
+  product: PropTypes.object.isRequired,
 };
 
 export default CartCard;

@@ -1,13 +1,14 @@
-import './styles.scss';
+import React, { useState, useEffect } from 'react';
+
+import { useParams } from 'react-router-dom';
+
 import {
   getAllProducts,
   getProductById,
 } from '../../api/products.js';
-import React, { useState, useEffect } from 'react';
 import ProductCard from 'Components/ProductCard';
 
-
-import { useParams } from 'react-router-dom';
+import './styles.scss';
 
 const ProductView = () => {
   const { id } = useParams();
