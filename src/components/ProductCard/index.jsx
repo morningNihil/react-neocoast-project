@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './styles.scss';
+
+import { ROUTES } from 'Data/constants';
 
 const ProductCard = ({
   id,
@@ -15,6 +17,12 @@ const ProductCard = ({
   category,
   showProductDetails = true,
 }) => {
+  const navigate = useNavigate();
+
+  const handleAddToCartClick = () => {
+    navigate(ROUTES.home);
+  };
+
   return (
     <Link className="product-card" to={`/product/${id}`}>
       <img src={image} alt={title} className="product-card__image" />
@@ -34,7 +42,13 @@ const ProductCard = ({
         )}
       </div>
       <p className="product-card__price">${price}</p>{' '}
-      <button className="product-card__action">Add to Cart</button>
+      {showProductDetails && (
+        <button
+          className="product-card__action"
+          onClick={handleAddToCartClick()}>
+          Add to Cart
+        </button>
+      )}
     </Link>
   );
 };
