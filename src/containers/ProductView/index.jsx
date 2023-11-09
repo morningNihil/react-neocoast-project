@@ -9,6 +9,7 @@ import {
   getProductById,
 } from '../../api/products.js';
 import ProductCard from 'Components/ProductCard';
+import ErrorPage from 'Containers/ErrorView';
 
 import './styles.scss';
 
@@ -16,19 +17,21 @@ const ProductView = () => {
   const { id } = useParams();
   const [productToDisplay, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
+      setError(null);
       try {
         const productData = await getProductById(id);
 
         setProduct(productData.data);
-        setIsLoading(false);
       } catch (error) {
-        console.error(
-          'An error occurred while fetching data:',
-          error,
-        );
+        console.log('Error', error);
+        setError(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -37,6 +40,16 @@ const ProductView = () => {
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (error) {
+    return (
+      <ErrorPage
+        message={
+          error.message || 'An error occurred while fetching data'
+        }
+      />
+    );
   }
 
   const { title, image, description, price, rating, category } =

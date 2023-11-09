@@ -8,6 +8,7 @@ import getAllCategories from '../../api/categories.js';
 import capitalizeFirstLetter from '/home/facu/react-neocoast-project/build-utils/capitalizeFirstLetter.js';
 import Spinner from 'Components/Spinner';
 import ProductList from 'Components/Products';
+import ErrorPage from 'Containers/ErrorView';
 
 import './styles.scss';
 
@@ -16,21 +17,23 @@ const Home = () => {
   const [filter, setFilter] = useState('');
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
+      setError(null);
       try {
         const productsData = await getAllProducts();
         const categoriesData = await getAllCategories();
 
         setProducts(productsData.data);
         setCategories(categoriesData.data);
-        setIsLoading(false);
       } catch (error) {
-        console.error(
-          'An error occurred while fetching data:',
-          error,
-        );
+        console.log('Error', error);
+        setError(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -43,6 +46,16 @@ const Home = () => {
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (error) {
+    return (
+      <ErrorPage
+        message={
+          error.message || 'An error occurred while fetching data'
+        }
+      />
+    );
   }
 
   return (

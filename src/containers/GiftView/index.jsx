@@ -7,6 +7,7 @@ import { getAllCarts } from '../../api/carts.js';
 import getAllUsers from '../../api/users.js';
 import capitalizeFirstLetter from '/home/facu/react-neocoast-project/build-utils/capitalizeFirstLetter.js';
 import Spinner from 'Components/Spinner';
+import ErrorPage from 'Containers/ErrorView';
 
 import './styles.scss';
 
@@ -15,9 +16,12 @@ const GiftView = () => {
   const { currentUser } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
+      setError(null);
       if (!currentUser) return;
       try {
         const usersData = await getAllUsers();
@@ -27,12 +31,11 @@ const GiftView = () => {
         );
         setCarts(cartFilter);
         setUsers(usersData.data);
-        setIsLoading(false);
       } catch (error) {
-        console.error(
-          'An error occurred while fetching carts:',
-          error,
-        );
+        console.log('Error', error);
+        setError(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -41,6 +44,16 @@ const GiftView = () => {
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (error) {
+    return (
+      <ErrorPage
+        message={
+          error.message || 'An error occurred while fetching data'
+        }
+      />
+    );
   }
 
   return (

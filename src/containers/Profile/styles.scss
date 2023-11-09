@@ -12,19 +12,19 @@
   border: 1px solid $user-profile;
   padding: 20px;
   border-radius: 8px;
-  width: 30%;
-
+  width: 90%;
+  max-width: 350px;
   text-align: center;
 
   &__avatar {
-    width: 200px;
+    width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
   }
 
   &__name {
-    font-size: 1.5em;
+    font-size: 1.3em;
     margin-top: 10px;
   }
 
@@ -41,16 +41,36 @@
     margin-top: 10px;
     color: #666;
     border: 1px solid $user-profile;
-    padding: 40px;
-    border-radius: 10%;
+    padding: 20px;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+
     &__location {
       font-weight: bold;
     }
     p {
       margin: 5px 0;
     }
+  }
+
+  @media (min-width: 768px) {
+    width: 20%;
+    &__avatar {
+      width: 100px;
+    }
+
+    &__name {
+      font-size: 1.5em;
+    }
+
+    &__details {
+      padding: 40px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    width: 30%;
   }
 }

@@ -8,6 +8,7 @@ import { useAuth } from '../../contexts/AuthContext.js';
 import CartCard from 'Components/Cart';
 import Button from 'Components/Button';
 import Spinner from 'Components/Spinner';
+import ErrorPage from 'Containers/ErrorView';
 
 import './styles.scss';
 
@@ -17,11 +18,14 @@ const CartView = ({}) => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const { cartId } = useParams();
+  const [error, setError] = useState(null);
 
   const { currentUser } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
+      setError(null);
       if (!currentUser) return;
       try {
         let cartToProcess;
@@ -51,12 +55,11 @@ const CartView = ({}) => {
           });
         }
         setProductsData(fetchedProductsData);
-        setIsLoading(false);
       } catch (error) {
-        console.error(
-          'An error occurred while fetching data:',
-          error,
-        );
+        console.log('Error', error);
+        setError(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -69,6 +72,16 @@ const CartView = ({}) => {
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (error) {
+    return (
+      <ErrorPage
+        message={
+          error.message || 'An error occurred while fetching data'
+        }
+      />
+    );
   }
 
   return (
