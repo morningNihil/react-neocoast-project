@@ -33,6 +33,9 @@ const ProductCard = ({
           <div className="product-card__show-details">
             <p className="product-card__description">{description}</p>
             <p className="product-card__description">
+              <i
+                className="fa-regular fa-star star_icon"
+                style={{ color: 'black', fontSize: '12px' }}></i>
               Rating: {rating.rate} (from {rating.count} reviews)
             </p>
             <p className="product-card__description">
